@@ -10,23 +10,28 @@ name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow
 
 =head2 Token Reference
 
-=defn name
+=head4 name
+
 Full name of the person, in double quotes. Accepts any characters except C<">.
 Example: C<name "Dr. Jane Smith">
 
-=defn party
+=head4 party
+
 Integer number of people.
 Example: C<party 4>
 
-=defn time
+=head4 time
+
 24-hour time as C<HH:MM>.
 Example: C<time 19:30>
 
-=defn restaurant
+=head4 restaurant
+
 Restaurant name in double quotes.
 Example: C<restaurant "Bistro Verde">
 
-=defn date
+=head4 date
+
 Single word: C<today>, C<tomorrow>, a weekday name, or an ISO date (C<2026-06-01>).
 Example: C<date tomorrow>
 

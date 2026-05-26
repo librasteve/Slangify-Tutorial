@@ -1,6 +1,6 @@
 =begin pod
 
-=head1 08. Common Pitfalls
+=head1 09. Common Pitfalls
 
 =head2 Overly broad schemas
 
@@ -43,7 +43,7 @@ Prefer precise token patterns over bare C<\S+>:
 Vague     | Precise
 \S+       | \d\d\d\d '-' \d\d '-' \d\d   (date)
 \S+       | \d+ ':' \d\d                 (time)
-\S+       | 'low' | 'medium' | 'high'    (enum)
+\S+       | 'low', 'medium', 'high'      (enum)
 .+        | '"' <( <-["]>+ )> '"'        (quoted string)
 
 The more specific the token, the earlier bad LLM output is caught.

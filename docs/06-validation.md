@@ -1,6 +1,6 @@
 [← Index](../index.md)
 
-# 05. Validation and Constraints
+# 06. Validation and Constraints
 
 This is where the Slangify approach becomes more valuable than plain prompting. Constraints live in the grammar and the `Booking` class — not in the prompt.
 
@@ -50,19 +50,19 @@ Readers love seeing failure **and** correction. The grammar gives you both: a cl
 
 ## Preferred types
 
-**integers**
+#### integers
 
-Use C<\d+> in the token and C<Int> in the class attribute.
+Use `\d+` in the token and `Int` in the class attribute.
 
-**enums**
+#### enums
 
-Use alternation in the token: C<low | medium | high>.
+Use alternation in the token: `low | medium | high`.
 
-**dates**
+#### dates
 
-Use a specific pattern token rather than bare C<\S+> if you need validation.
+Use a specific pattern token rather than bare `\S+` if you need validation.
 
-**free strings**
+#### free strings
 
-Keep C<\S+> or C<< <-["]>+ >> but add C<Str> typing so at least the attribute is defined.
+Keep `\S+` or `<-["]>+ ` but add `Str` typing so at least the attribute is defined.
 

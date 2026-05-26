@@ -8,25 +8,25 @@
 
 ## Token Reference
 
-**name**
+#### name
 
-Full name of the person, in double quotes. Accepts any characters except C<">. Example: C<name "Dr. Jane Smith">
+Full name of the person, in double quotes. Accepts any characters except `"`. Example: `name "Dr. Jane Smith"`
 
-**party**
+#### party
 
-Integer number of people. Example: C<party 4>
+Integer number of people. Example: `party 4`
 
-**time**
+#### time
 
-24-hour time as C<HH:MM>. Example: C<time 19:30>
+24-hour time as `HH:MM`. Example: `time 19:30`
 
-**restaurant**
+#### restaurant
 
-Restaurant name in double quotes. Example: C<restaurant "Bistro Verde">
+Restaurant name in double quotes. Example: `restaurant "Bistro Verde"`
 
-**date**
+#### date
 
-Single word: C<today>, C<tomorrow>, a weekday name, or an ISO date (C<2026-06-01>). Example: C<date tomorrow>
+Single word: `today`, `tomorrow`, a weekday name, or an ISO date (`2026-06-01`). Example: `date tomorrow`
 
 ## Using in the Slangify Playground
 

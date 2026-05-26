@@ -1,6 +1,6 @@
 =begin pod
 
-=head1 05. Validation and Constraints
+=head1 06. Validation and Constraints
 
 This is where the Slangify approach becomes more valuable than plain prompting.
 Constraints live in the grammar and the C<Booking> class — not in the prompt.
@@ -54,16 +54,20 @@ a clear rejection plus a single place to tighten the rule.
 
 =head2 Preferred types
 
-=defn integers
+=head4 integers
+
 Use C<\d+> in the token and C<Int> in the class attribute.
 
-=defn enums
+=head4 enums
+
 Use alternation in the token: C<low | medium | high>.
 
-=defn dates
+=head4 dates
+
 Use a specific pattern token rather than bare C<\S+> if you need validation.
 
-=defn free strings
+=head4 free strings
+
 Keep C<\S+> or C<< <-["]>+ >> but add C<Str> typing so at least the attribute is
 defined.
 

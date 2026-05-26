@@ -2,7 +2,7 @@
 
 # 02. Your First Schema
 
-In Slangify, the schema is a Raku Grammar. Each named token is a field; the `TOP` rule defines the canonical DSL line the LLM must produce.
+In Slangify, the DSL schema is a Raku Grammar. Each named token is a field; the `TOP` rule defines the canonical DSL line the LLM must produce.
 
 ## The booking grammar
 
@@ -29,21 +29,21 @@ grammar Slangify::Tutorial::Grammar {
 
 ## Field types
 
-**name / restaurant**
+#### name / restaurant
 
-Quoted string — any characters except C<">. The C<< <( )> >> markers strip the surrounding quotes from the capture.
+Quoted string — any characters except `"`. The `<( )> ` markers strip the surrounding quotes from the capture.
 
-**party**
+#### party
 
-One or more digits — coerced to C<Int> by the C<Booking> class.
+One or more digits — coerced to `Int` by the `Booking` class.
 
-**time**
+#### time
 
-24-hour C<HH:MM> — e.g. C<19:30> for 7:30 pm.
+24-hour `HH:MM` — e.g. `19:30` for 7:30 pm.
 
-**date**
+#### date
 
-Any non-whitespace token: C<today>, C<tomorrow>, a weekday, or C<2026-06-01>.
+Any non-whitespace token: `today`, `tomorrow`, a weekday, or `2026-06-01`.
 
 ## Required vs optional
 

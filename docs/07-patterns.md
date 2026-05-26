@@ -1,6 +1,6 @@
 [← Index](../index.md)
 
-# 06. Prompt Engineering Patterns
+# 07. Prompt Engineering Patterns
 
 Four practical patterns for combining Slangify grammars with LLMs.
 

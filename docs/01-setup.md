@@ -4,31 +4,31 @@
 
 ## Prerequisites
 
-  * Raku
-
   * An AI key (such as OpenAI)
 
-## Install raku
+## Install Raku
 
-Simply use rakubrew...
+The Slangify focus is writing DSLs in Raku. [Raku](https://raku.org) is an open source programming language with built-in Grammar capability. [Why Raku?](https://slangify.org/why).
 
-...for macOS...
+Use rakubrew to install a Raku compiler...
+
+...for macOS:
 
 ```shell
 curl https://rakubrew.org/install-on-macos.sh | sh
 ```
 
-...or linux...
+...for linux:
 
 ```shell
 curl https://rakubrew.org/install-on-perl.sh | sh
 ```
 
-Or, see [https://raku.org/install](https://raku.org/install) for more options.
+See [https://raku.org/install](https://raku.org/install) for more options.
 
-Raku comes with the `zef` package manager.
+Raku comes complete with the `zef` package manager.
 
-## Clone the module
+## Clone the Module
 
 ```shell
 git clone https://github.com/librasteve/Slangify-Tutorial
@@ -46,7 +46,9 @@ This will bring in all the dependencies - such as the `LLM::Functions` module.
 export OPENAI_API_KEY=sk-...
 ```
 
-Or, see [https://raku.land/zef:antononcube/LLM::Functions](https://raku.land/zef:antononcube/LLM::Functions) for other LLM services.
+See [https://raku.land/zef:antononcube/LLM::Functions](https://raku.land/zef:antononcube/LLM::Functions) for other supported LLMs.
+
+You can append the `export` cmd to your `~/.zshrc` or `~/.bashrc`.
 
 ## Verify the install
 

@@ -1,0 +1,70 @@
+=begin pod
+
+=head1 05. Iteration
+
+Building a reliable DSL pipeline is rarely one-shot. The typical workflow is a
+short loop: run → observe → tighten → repeat.
+
+=head2 The iteration loop
+
+=begin code
+1. Write grammar + prompt
+2. Run against a sample input
+3. Inspect the canonical DSL the LLM produced
+4. If the grammar rejects it — tighten the prompt or relax the token
+5. If the grammar accepts it but the data is wrong — tighten the token
+6. Repeat until the full sample set passes
+=end code
+
+=head2 Logging the canonical DSL
+
+Always log the intermediate DSL string so you can see exactly what the LLM
+produced before the grammar runs:
+
+=begin code :lang<raku>
+sub parse-booking(Str $text --> Str) is export {
+    my $canonical = normalize-text($text);
+    note "canonical: $canonical";          # ← add during development
+    my $match = Slangify::Tutorial::Grammar.parse(
+        $canonical,
+        :actions(Slangify::Tutorial::Actions.new)
+    );
+    die "Parse failed on: $canonical" unless $match;
+    $match.made.raku
+}
+=end code
+
+The C<note> line writes to C<STDERR> so it doesn't pollute the JSON output.
+Remove it once the grammar is stable.
+
+=head2 Common iteration scenarios
+
+=head4 LLM uses the wrong field name
+
+The LLM outputs C<guests 4> instead of C<party 4>. Fix: add an alias example
+to the prompt, or rename the token to match natural LLM output.
+
+=head4 LLM adds extra fields
+
+The LLM outputs C<name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow notes "window seat">.
+The grammar rejects it because C<notes> is unknown. Fix: either add a C<notes>
+token to the grammar, or add a rule to the prompt: C<Output ONLY the five
+specified fields>.
+
+=head4 LLM drops optional fields
+
+The LLM omits C<date> when it is not mentioned. Fix: make the token optional
+in C<TOP> with C<?>  and handle the missing case in C<Booking>.
+
+=head4 Token too strict
+
+Your C<token time { <[0..2]>\d ':' <[0..5]>\d }> rejects C<9:00> (single
+digit hour). Fix: C<token time { \d\d? ':' <[0..5]>\d }>.
+
+=head2 Using the Slangify Playground for iteration
+
+Paste your grammar into L<https://slangify.org> and type DSL lines directly
+to test token rules without any LLM round-trip. Fast feedback for grammar
+iteration.
+
+=end pod

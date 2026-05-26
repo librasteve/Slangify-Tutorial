@@ -40,9 +40,15 @@ Behind the scenes C<extract-booking> returns C<$match.made.raku>, where C<.made>
 is a C<Booking> instance populated by the C<Actionable> role:
 
 =begin code :lang<raku>
+use Slangify::Tutorial::Grammar;
+use Slangify::Tutorial::Actions;
+
+my $canonical = 'name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow';
+
 my $m = Slangify::Tutorial::Grammar.parse($canonical,
             :actions(Slangify::Tutorial::Actions.new));
 my $b = $m.made;
+say $b.WHAT;        # (Booking)
 say $b.name;        # Sam
 say $b.party;       # 4  (Int, not Str)
 say $b.restaurant;  # Pizza East

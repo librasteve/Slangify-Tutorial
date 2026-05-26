@@ -4,28 +4,29 @@
 
 =head2 Prerequisites
 
-=item Raku
 =item An AI key (such as OpenAI)
 
-=head2 Install raku
+=head2 Install Raku
 
-Simply use rakubrew...
+The Slangify focus is writing DSLs in Raku. L<Raku|https://raku.org> is an open source programming language with built-in Grammar capability. L<Why Raku?|https://slangify.org/why>.
 
-...for macOS...
+Use rakubrew to install a Raku compiler...
+
+...for macOS:
 =begin code :lang<shell>
 curl https://rakubrew.org/install-on-macos.sh | sh
 =end code
 
-...or linux...
+...for linux:
 =begin code :lang<shell>
 curl https://rakubrew.org/install-on-perl.sh | sh
 =end code
 
-Or, see L<https://raku.org/install> for more options.
+See L<https://raku.org/install> for more options.
 
-Raku comes with the C<zef> package manager.
+Raku comes complete with the C<zef> package manager.
 
-=head2 Clone the module
+=head2 Clone the Module
 
 =begin code :lang<shell>
 git clone https://github.com/librasteve/Slangify-Tutorial
@@ -43,7 +44,9 @@ C<LLM::Functions> picks up your key from the environment:
 export OPENAI_API_KEY=sk-...
 =end code
 
-Or, see L<https://raku.land/zef:antononcube/LLM::Functions> for other LLM services.
+See L<https://raku.land/zef:antononcube/LLM::Functions> for other supported LLMs.
+
+You can append the C<export> cmd to your C<~/.zshrc> or C<~/.bashrc>.
 
 =head2 Verify the install
 

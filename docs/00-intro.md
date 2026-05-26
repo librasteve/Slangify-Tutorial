@@ -1,8 +1,8 @@
 [← Index](../index.md)
 
-# Slangify::Tutorial
+# 00. Slangify::Tutorial
 
-**Using Slangify with LLMs: From Prompt to Structured Output**
+**Using DSLs with LLMs: From Prompt to Structured Output**
 
 Suppose you want an LLM to extract structured information from messy text — but you don't want to hand-write JSON schemas or fragile parsing logic.
 
@@ -40,21 +40,29 @@ Slangify lets you define that structure with a DSL, then use an LLM to populate 
 
 ## Chapters
 
-  * [1. Setup](01-setup.md)
+  * [01. Setup](01-setup.md)
 
-  * [2. Your First Schema](02-schema.md)
+  * [02. Your First Schema](02-schema.md)
 
-  * [3. Connecting to an LLM](03-llm.md)
+  * [03. Connecting to an LLM](03-llm.md)
 
-  * [4. The Generated Output](04-output.md)
+  * [04. The Generated Output](04-output.md)
 
-  * [5. Validation and Constraints](05-validation.md)
+  * [05. Iteration](05-iteration.md)
 
-  * [6. Prompt Engineering Patterns](06-patterns.md)
+  * [06. Validation and Constraints](06-validation.md)
 
-  * [7. A Real-World Example](07-real-world.md)
+  * [07. Prompt Engineering Patterns](07-patterns.md)
 
-  * [8. Common Pitfalls](08-pitfalls.md)
+  * [08. A Real-World Example](08-real-world.md)
 
-  * [9. Next Steps](09-next-steps.md)
+  * [09. Common Pitfalls](09-pitfalls.md)
+
+  * [10. Next Steps](10-next-steps.md)
+
+## More Info
+
+Visit [https://slangify.org](https://slangify.org) for more information, examples and guidance.
+
+Please ping the [https://raku.org/community](https://raku.org/community)
 

@@ -1,8 +1,8 @@
 =begin pod
 
-=head1 Slangify::Tutorial
+=head1 00. Slangify::Tutorial
 
-B<Using Slangify with LLMs: From Prompt to Structured Output>
+B<Using DSLs with LLMs: From Prompt to Structured Output>
 
 Suppose you want an LLM to extract structured information from messy text — but
 you don't want to hand-write JSON schemas or fragile parsing logic.
@@ -40,14 +40,21 @@ real-world pipeline.
 
 =head2 Chapters
 
-=item L<1. Setup|01-setup.md>
-=item L<2. Your First Schema|02-schema.md>
-=item L<3. Connecting to an LLM|03-llm.md>
-=item L<4. The Generated Output|04-output.md>
-=item L<5. Validation and Constraints|05-validation.md>
-=item L<6. Prompt Engineering Patterns|06-patterns.md>
-=item L<7. A Real-World Example|07-real-world.md>
-=item L<8. Common Pitfalls|08-pitfalls.md>
-=item L<9. Next Steps|09-next-steps.md>
+=item L<01. Setup|01-setup.md>
+=item L<02. Your First Schema|02-schema.md>
+=item L<03. Connecting to an LLM|03-llm.md>
+=item L<04. The Generated Output|04-output.md>
+=item L<05. Iteration|05-iteration.md>
+=item L<06. Validation and Constraints|06-validation.md>
+=item L<07. Prompt Engineering Patterns|07-patterns.md>
+=item L<08. A Real-World Example|08-real-world.md>
+=item L<09. Common Pitfalls|09-pitfalls.md>
+=item L<10. Next Steps|10-next-steps.md>
+
+=head2 More Info
+
+Visit L<https://slangify.org> for more information, examples and guidance.
+
+Please ping the L<https://raku.org/community>
 
 =end pod

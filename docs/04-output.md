@@ -37,9 +37,15 @@ The LLM resolved `"Sam and three friends"` to `party: 4` and normalized `8pm` to
 Behind the scenes `extract-booking` returns `$match.made.raku`, where `.made` is a `Booking` instance populated by the `Actionable` role:
 
 ```raku
+use Slangify::Tutorial::Grammar;
+use Slangify::Tutorial::Actions;
+
+my $canonical = 'name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow';
+
 my $m = Slangify::Tutorial::Grammar.parse($canonical,
             :actions(Slangify::Tutorial::Actions.new));
 my $b = $m.made;
+say $b.WHAT;        # (Booking)
 say $b.name;        # Sam
 say $b.party;       # 4  (Int, not Str)
 say $b.restaurant;  # Pizza East

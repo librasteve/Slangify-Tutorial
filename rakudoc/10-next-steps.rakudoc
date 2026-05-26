@@ -1,0 +1,70 @@
+=begin pod
+
+=head1 10. Next Steps
+
+=head2 What you learned
+
+=item Define a schema as a Raku Grammar with named tokens
+=item Use C<LLM::Functions> to normalize free-form text to your DSL
+=item Parse the DSL with Grammar + Actions
+=item Get typed, validated structured output
+=item Build schema-driven pipelines instead of fragile regex or prompt hacks
+
+=head2 Things to explore next
+
+=head4 Nested schemas
+
+Add a C<token-address> subrule with its own sub-tokens, and a nested class
+inside C<Booking>. The C<Actionable> role composes naturally.
+
+=head4 Tool calling
+
+Wire C<extract-booking> as a tool in an C<LLM::Functions> agent so the LLM
+can invoke it mid-conversation.
+
+=head4 Streaming structured output
+
+Parse incrementally as the LLM streams tokens — useful when the DSL is long.
+
+=head4 Retries on validation failure
+
+Catch a failed parse, feed the raw LLM output back with an error message, and
+ask it to correct the DSL. Usually one retry is enough.
+
+=head4 Integration with agent workflows
+
+Use the structured C<Booking> / C<Ticket> objects as typed messages passed
+between agents in a multi-step pipeline.
+
+=head4 The Slangify Playground
+
+Paste any Grammar + Actions pair into L<https://slangify.org> to test and
+share your DSL interactively — no local install needed.
+
+=head2 Further reading
+
+=item L<Slangify::Tutorial source code|https://github.com/librasteve/Slangify-Tutorial>
+=item L<LLM::Functions on raku.land|https://raku.land/zef:antononcube/LLM::Functions>
+=item L<Actionable on raku.land|https://raku.land/zef:librasteve/Actionable>
+=item L<Raku Grammar tutorial|https://docs.raku.org/language/grammars>
+
+
+=head2 This tutorial
+
+=item L<Slangify::Tutorial source|https://github.com/librasteve/Slangify-Tutorial>
+=item L<Slangify Playground|https://slangify.org>
+=item L<Grammar Editor|https://play.slangify.org>
+
+=head2 Raku
+
+=item L<Raku Grammars|https://docs.raku.org/language/grammars>
+=item L<Raku Regexes|https://docs.raku.org/language/regexes>
+=item L<Raku Pod6|https://docs.raku.org/language/pod>
+
+=head2 Key modules
+
+=item L<LLM::Functions on raku.land|https://raku.land/zef:antononcube/LLM::Functions>
+=item L<Actionable on raku.land|https://raku.land/zef:librasteve/Actionable>
+=item L<JSON::Fast on raku.land|https://raku.land/zef:timo/JSON::Fast>
+
+=end pod
