@@ -1,0 +1,116 @@
+use Test;
+use lib 'lib';
+use Slangify::Tutorial;
+use JSON::Fast;
+
+unless %*ENV<OPENAI_API_KEY> {
+    skip-rest 'OPENAI_API_KEY not set — skipping natural language tests';
+    exit;
+}
+
+# Each case specifies the free-form input and the fields we can assert reliably.
+# party is an exact integer check (numbers are deterministic).
+# name is checked where the first name is unambiguous in the input.
+# time and date are checked for presence only (LLM interpretation may vary).
+
+my @cases = (
+    {
+        label  => 'baseline — standard phrasing',
+        text   => 'Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde',
+        name   => 'Jane',
+        party  => 4,
+    },
+    {
+        label  => 'restaurant named first, tonight as date',
+        text   => 'At The Olive Garden please reserve for Alex, party of 2, tonight at 9pm',
+        name   => 'Alex',
+        party  => 2,
+    },
+    {
+        label  => 'casual question phrasing, name given at end',
+        text   => 'Can you get us in at Sushi Palace — 5 people, this Saturday at 6:30pm — name is Kim',
+        name   => 'Kim',
+        party  => 5,
+    },
+    {
+        label  => '"bringing a party of" phrasing',
+        text   => 'Tom is bringing a party of 8 to La Maison on Friday at 8pm',
+        name   => 'Tom',
+        party  => 8,
+    },
+    {
+        label  => 'ISO date, comma-separated fields',
+        text   => 'Reservation for Sarah, 3 people, on 2026-06-15 at 7pm at Noodle House',
+        name   => 'Sarah',
+        party  => 3,
+        date   => '2026-06-15',
+    },
+    {
+        label  => '"and his partner" implies party of 2',
+        text   => 'Book Marco and his partner at Midnight Diner for 11:30pm on Wednesday',
+        name   => 'Marco',
+        party  => 2,
+    },
+    {
+        label  => '"noon" as time expression',
+        text   => 'Priya needs a table for 6 at Curry Corner at noon today',
+        name   => 'Priya',
+        party  => 6,
+    },
+    {
+        label  => 'party of 1, terse sentence',
+        text   => 'Just one person — David — at The Library at 6pm on Sunday',
+        name   => 'David',
+        party  => 1,
+    },
+    {
+        label  => 'large corporate party',
+        text   => 'Corporate dinner for 20 at Grand Hall on Monday at 7pm, organiser is Chen',
+        name   => 'Chen',
+        party  => 20,
+    },
+    {
+        label  => 'morning AM time, breakfast context',
+        text   => 'Wei wants breakfast for 3 at Jade Garden at 8:30am tomorrow',
+        name   => 'Wei',
+        party  => 3,
+    },
+    {
+        label  => 'possessive restaurant name, group phrasing',
+        text   => "Anna's group of 5 needs a table at Joe's Grill this Saturday at 7pm",
+        name   => 'Anna',
+        party  => 5,
+    },
+    {
+        label  => 'late-night booking, urgency framing',
+        text   => 'Carlos urgently needs a table for 2 tonight at 10:30pm at Late Night Bistro',
+        name   => 'Carlos',
+        party  => 2,
+    },
+);
+
+for @cases -> %c {
+    subtest %c<label>, {
+        my $json = parse-booking(%c<text>);
+        ok $json, 'got JSON output';
+
+        my %data = from-json($json);
+        ok %data<name>.defined,       'name field present';
+        ok %data<party>.defined,      'party field present';
+        ok %data<time>.defined,       'time field present';
+        ok %data<restaurant>.defined, 'restaurant field present';
+        ok %data<date>.defined,       'date field present';
+
+        isa-ok %data<party>, Int,     'party is Int';
+        is  %data<party>, %c<party>,  "party = %c<party>";
+
+        if %c<name> {
+            is %data<name>, %c<name>, "name = %c<name>";
+        }
+        if %c<date> {
+            is %data<date>, %c<date>, "date = %c<date>";
+        }
+    };
+}
+
+done-testing;

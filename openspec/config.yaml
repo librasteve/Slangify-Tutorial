@@ -1,0 +1,23 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Raku, mi6, Grammar + Actions DSL pattern, Actionable role.
+
+  Architecture:
+  - LLM::Functions normalizes free-form booking text to a canonical DSL line:
+      name <Name> party <N> time <HH:MM-24h> restaurant "<Name>" date <token>
+  - Party::Tute::Grammar parses the canonical DSL line (keyword-anchored rules,
+    named captures)
+  - Party::Tute::Actions uses Actionable to auto-populate a Booking object
+  - JSON::Fast serializes the result; bin/party-tute is the CLI entry point
+  - Grammar + Actions work standalone in the Slangify Playground
+
+  Modules: JSON::Fast (installed), LLM::Functions (installed, ver 0.2.2),
+           Actionable (install with: zef install --/test Actionable)
+
+  Key conventions:
+  - Grammar token 'party' maps to attribute 'party-size' via capture-map
+  - Actionable auto-coerces Int attributes via +$raw
+  - Attribute names use kebab-case (party-size); JSON output uses snake_case (party_size)
+  - Time transform: 24h HH:MM → "H:MM AM/PM" display format in Booking.transform
+  - Tests use standard Test module with subtest blocks; run with prove6

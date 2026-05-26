@@ -1,0 +1,22 @@
+{
+    "name": "Slangify::Tutorial",
+    "description": "Extract structured data from natural language restaurant booking text",
+    "version": "0.0.1",
+    "authors": [
+        "librasteve"
+    ],
+    "auth": "zef:librasteve",
+    "depends": [
+        "JSON::Fast",
+        "Actionable",
+        "LLM::Functions"
+    ],
+    "build-depends": [],
+    "provides": {
+        "Slangify::Tutorial": "lib/Slangify/Tutorial.rakumod",
+        "Slangify::Tutorial::Grammar": "lib/Slangify/Tutorial/Grammar.rakumod",
+        "Slangify::Tutorial::Actions": "lib/Slangify/Tutorial/Actions.rakumod"
+    },
+    "license": "Artistic-2.0",
+    "source-url": ""
+}

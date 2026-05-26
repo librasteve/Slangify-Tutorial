@@ -1,0 +1,134 @@
+use Test;
+use lib 'lib';
+use Slangify::Tutorial::Grammar;
+use Slangify::Tutorial::Actions;
+
+my constant CANONICAL = 'name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow';
+
+subtest 'grammar parses canonical DSL line', {
+    my $m = Slangify::Tutorial::Grammar.parse(CANONICAL);
+    ok  $m,                               'grammar parses';
+    is  ~$m<name>,        'Jane',         'name captured (quotes stripped)';
+    is  ~$m<party>,       '4',            'party captured';
+    is  ~$m<time>,        '19:30',        'time captured';
+    is  ~$m<restaurant>,  'Bistro Verde', 'restaurant captured (quotes stripped)';
+    is  ~$m<date>,        'tomorrow',     'date captured';
+};
+
+subtest 'name with title and last name', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        'name "Dr. Jane Smith" party 2 time 19:30 restaurant "Bistro Verde" date tomorrow'
+    );
+    ok $m,                          'grammar parses';
+    is ~$m<name>, 'Dr. Jane Smith', 'title + first + last captured';
+};
+
+subtest 'name with middle name', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        'name "Mary Jane Watson" party 3 time 12:00 restaurant "The Oak" date friday'
+    );
+    ok $m,                            'grammar parses';
+    is ~$m<name>, 'Mary Jane Watson', 'first + middle + last captured';
+};
+
+subtest 'actions populate Booking from canonical DSL', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        CANONICAL,
+        :actions(Slangify::Tutorial::Actions.new)
+    );
+    ok     $m,                            'parse succeeded';
+    my $b = $m.made;
+    isa-ok $b,            Booking,        'made a Booking';
+    is     $b.name,       'Jane',         'name';
+    is     $b.party,      4,              'party coerced to Int';
+    isa-ok $b.party,      Int,            'party is Int';
+    is     $b.time,       '19:30',        'time passes through as 24h';
+    is     $b.restaurant, 'Bistro Verde', 'restaurant';
+    is     $b.date,       'tomorrow',     'date';
+};
+
+subtest 'action-hash has all expected keys', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        CANONICAL,
+        :actions(Slangify::Tutorial::Actions.new)
+    );
+    my %h = $m.made.action-hash;
+    ok %h<name>.defined,        'name key';
+    ok %h<party>.defined,       'party key';
+    ok %h<time>.defined,        'time key';
+    ok %h<restaurant>.defined,  'restaurant key';
+    ok %h<date>.defined,        'date key';
+};
+
+subtest 'grammar rejects raw freeform text', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        'Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde'
+    );
+    nok $m, 'freeform text does not parse';
+};
+
+subtest 'various 24h times pass through unchanged', {
+    for '00:00', '08:30', '12:00', '13:45', '19:30', '23:59' -> $t {
+        my $m = Slangify::Tutorial::Grammar.parse(
+            "name \"X\" party 1 time $t restaurant \"R\" date today",
+            :actions(Slangify::Tutorial::Actions.new)
+        );
+        ok $m,               "$t parses";
+        is $m.made.time, $t, "$t passes through";
+    }
+};
+
+subtest 'multi-digit party size', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        'name "Corp" party 20 time 18:00 restaurant "Grand Hall" date friday',
+        :actions(Slangify::Tutorial::Actions.new)
+    );
+    ok     $m,                      'parses large party';
+    is     $m.made.party, 20,       'party 20';
+    isa-ok $m.made.party, Int,      'still Int';
+};
+
+subtest 'ISO date', {
+    my $m = Slangify::Tutorial::Grammar.parse(
+        'name "Wei" party 2 time 20:00 restaurant "Jade Garden" date 2026-06-01',
+        :actions(Slangify::Tutorial::Actions.new)
+    );
+    ok $m,                         'parses ISO date';
+    is $m.made.date, '2026-06-01', 'ISO date preserved';
+};
+
+subtest 'JSON output via .raku has correct keys and types', {
+    use JSON::Fast;
+    my $m = Slangify::Tutorial::Grammar.parse(
+        CANONICAL,
+        :actions(Slangify::Tutorial::Actions.new)
+    );
+    my %data = from-json($m.made.raku);
+    is  %data<name>,       'Jane',        'name in JSON';
+    is  %data<party>,      4,             'party in JSON';
+    is  %data<time>,       '19:30',       'time in JSON as 24h';
+    is  %data<restaurant>, 'Bistro Verde','restaurant in JSON';
+    is  %data<date>,       'tomorrow',    'date in JSON';
+    isa-ok %data<party>, Int,             'party is Int (not Str)';
+};
+
+if %*ENV<OPENAI_API_KEY> {
+    use Slangify::Tutorial;
+    subtest 'full pipeline: freeform text → JSON', {
+        my $json = parse-booking(
+            'Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde'
+        );
+        ok $json, 'got JSON string';
+        use JSON::Fast;
+        my %data = from-json($json);
+        ok  %data<name>,          'name in JSON';
+        is  %data<party>, 4,      'party in JSON';
+        ok  %data<time>,          'time in JSON';
+        ok  %data<restaurant>,    'restaurant in JSON';
+        ok  %data<date>,          'date in JSON';
+    };
+} else {
+    skip 'OPENAI_API_KEY not set — skipping LLM integration test', 1;
+}
+
+done-testing;

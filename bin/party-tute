@@ -1,0 +1,11 @@
+#!/usr/bin/env raku
+use lib 'lib';
+use Slangify::Tutorial;
+
+sub MAIN(
+    Str $text,         #= Free-form booking text to parse
+    Str :$output,      #= Optional output file; if omitted prints to stdout
+) {
+    my $json = parse-booking($text);
+    $output ?? $output.IO.spurt($json) !! print $json;
+}

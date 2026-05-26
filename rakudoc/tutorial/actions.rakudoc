@@ -1,0 +1,45 @@
+=begin pod
+
+=head1 Actions & Booking Class
+
+C<Slangify::Tutorial::Actions> uses the C<Actionable> role to auto-populate a
+C<Booking> object from a successful grammar match.
+
+=head2 The Booking Class
+
+=begin code :lang<raku>
+use Actionable;
+
+class Booking does Actionable {
+    has Str $.name;
+    has Int $.party;
+    has Str $.time;
+    has Str $.restaurant;
+    has Str $.date;
+
+    method raku { self.action-to-json }
+}
+=end code
+
+The C<Actionable> role wires named grammar captures to attributes automatically.
+C<Int> attributes are coerced from the capture string via C<+$raw>.
+
+=head2 Actions Class
+
+=begin code :lang<raku>
+class Slangify::Tutorial::Actions {
+    method TOP($/) {
+        make Booking.action($/)
+    }
+}
+=end code
+
+C<Booking.action($/)> is the C<Actionable> entry point — it reads all named
+captures from C<$/> and populates the matching attributes.
+
+=head2 JSON Output
+
+C<$booking.raku> delegates to C<action-to-json>, returning a JSON string with
+all public attributes.
+
+=end pod
