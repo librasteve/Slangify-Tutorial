@@ -11,5 +11,6 @@ Document Index
 - [07-real-world](docs/07-real-world.md)
 - [08-pitfalls](docs/08-pitfalls.md)
 - [09-next-steps](docs/09-next-steps.md)
+- [10-further-reading](docs/10-further-reading.md)
 - [actions](docs/actions.md)
 - [grammar](docs/grammar.md)
