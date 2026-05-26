@@ -50,7 +50,7 @@ sub MAIN (:$filename, :$output = 'index.md') {
 
         for sort @destFiles {
             my $m = .extension('');
-            my $module-name = $*SPEC.splitdir( $m.relative ).skip(1).join('/');
+            my $module-name = $*SPEC.splitdir( $m.relative ).skip(1).join('::');
 
             my $n = .extension('md');
             $index ~= "- [{ $module-name }]({ $n.relative })\n";
