@@ -42,31 +42,23 @@ Paste any Grammar + Actions pair into [https://slangify.org](https://slangify.or
 
 ## Further reading
 
+#### This tutorial
+
   * [Slangify::Tutorial source code](https://github.com/librasteve/Slangify-Tutorial)
 
-  * [LLM::Functions on raku.land](https://raku.land/zef:antononcube/LLM::Functions)
-
-  * [Actionable on raku.land](https://raku.land/zef:librasteve/Actionable)
-
-  * [Raku Grammar tutorial](https://docs.raku.org/language/grammars)
-
-## This tutorial
-
-  * [Slangify::Tutorial source](https://github.com/librasteve/Slangify-Tutorial)
-
-  * [Slangify Playground](https://slangify.org)
+  * [Slangify Website Examples](https://slangify.org/examples)
 
   * [Grammar Editor](https://play.slangify.org)
 
-## Raku
+#### Raku docs
 
-  * [Raku Grammars](https://docs.raku.org/language/grammars)
+  * [Raku Grammar tutorial](https://docs.raku.org/language/grammars)
 
   * [Raku Regexes](https://docs.raku.org/language/regexes)
 
   * [Raku Pod6](https://docs.raku.org/language/pod)
 
-## Key modules
+#### Key modules
 
   * [LLM::Functions on raku.land](https://raku.land/zef:antononcube/LLM::Functions)
 

@@ -99,5 +99,3 @@ Output:
 }
 ```
 
-This section makes the tutorial feel practical rather than toy-like: a real input, a real schema, a real structured result ready for a ticketing database.
-

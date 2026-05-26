@@ -13,8 +13,8 @@ token details { .* }
 B<Better> — specific named fields:
 
 =begin code :lang<raku>
-token customer_email { <-[\s]>+ '@' <-[\s]>+ }
-token customer_issue { '"' <( <-["]>+ )> '"' }
+token customer-email { <-[\s]>+ '@' <-[\s]>+ }
+token customer-issue { '"' <( <-["]>+ )> '"' }
 =end code
 
 Broad tokens give the grammar nothing to check and make downstream code
@@ -42,7 +42,7 @@ Prefer precise token patterns over bare C<\S+>:
 =table
 Vague     | Precise
 \S+       | \d\d\d\d '-' \d\d '-' \d\d   (date)
-\S+       | \d+ ':' \d\d                 (time)
+\S+       | \d\d ':' \d\d                (time)
 \S+       | 'low', 'medium', 'high'      (enum)
 .+        | '"' <( <-["]>+ )> '"'        (quoted string)
 

@@ -13,8 +13,8 @@ token details { .* }
 **Better** — specific named fields:
 
 ```raku
-token customer_email { <-[\s]>+ '@' <-[\s]>+ }
-token customer_issue { '"' <( <-["]>+ )> '"' }
+token customer-email { <-[\s]>+ '@' <-[\s]>+ }
+token customer-issue { '"' <( <-["]>+ )> '"' }
 ```
 
 Broad tokens give the grammar nothing to check and make downstream code harder to write.
@@ -37,7 +37,7 @@ Prefer precise token patterns over bare `\S+`:
 
 <table class="pod-table">
 <tbody>
-<tr> <td>Vague</td> <td>Precise</td> </tr> <tr> <td>\S+</td> <td>\d\d\d\d &#39;-&#39; \d\d &#39;-&#39; \d\d (date)</td> </tr> <tr> <td>\S+</td> <td>\d+ &#39;:&#39; \d\d (time)</td> </tr> <tr> <td>\S+</td> <td>&#39;low&#39;, &#39;medium&#39;, &#39;high&#39; (enum)</td> </tr> <tr> <td>.+</td> <td>&#39;&quot;&#39; &lt;( &lt;-[&quot;]&gt;+ )&gt; &#39;&quot;&#39; (quoted string)</td> </tr>
+<tr> <td>Vague</td> <td>Precise</td> </tr> <tr> <td>\S+</td> <td>\d\d\d\d &#39;-&#39; \d\d &#39;-&#39; \d\d (date)</td> </tr> <tr> <td>\S+</td> <td>\d\d &#39;:&#39; \d\d (time)</td> </tr> <tr> <td>\S+</td> <td>&#39;low&#39;, &#39;medium&#39;, &#39;high&#39; (enum)</td> </tr> <tr> <td>.+</td> <td>&#39;&quot;&#39; &lt;( &lt;-[&quot;]&gt;+ )&gt; &#39;&quot;&#39; (quoted string)</td> </tr>
 </tbody>
 </table>
 
