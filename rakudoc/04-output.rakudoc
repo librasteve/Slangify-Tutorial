@@ -1,0 +1,51 @@
+=begin pod
+
+=head1 4. The Generated Output
+
+=head2 Example call
+
+=begin code :lang<raku>
+use Slangify::Tutorial;
+
+say parse-booking("Book a table for Sam and three friends at Pizza East tomorrow at 8pm");
+=end code
+
+=head2 Output
+
+=begin code :lang<json>
+{
+  "name": "Sam",
+  "party": 4,
+  "time": "20:00",
+  "restaurant": "Pizza East",
+  "date": "tomorrow"
+}
+=end code
+
+The LLM resolved C<"Sam and three friends"> to C<party: 4> and normalized
+C<8pm> to C<20:00> — both things a regex alone cannot do reliably.
+
+=head2 Why structured output matters
+
+=item B<Easier to consume downstream> — hand the hash to a database, API, or
+next pipeline step without parsing
+=item B<Avoids brittle regex> — the grammar rejects anything that doesn't fit,
+so bad output surfaces immediately rather than silently corrupting data
+=item B<Easy to validate> — typed fields (C<Int>, C<Str>) give you free
+basic checks before any business logic runs
+
+=head2 The Booking object
+
+Behind the scenes C<parse-booking> returns C<$match.made.raku>, where C<.made>
+is a C<Booking> instance populated by the C<Actionable> role:
+
+=begin code :lang<raku>
+my $m = Slangify::Tutorial::Grammar.parse($canonical,
+            :actions(Slangify::Tutorial::Actions.new));
+my $b = $m.made;
+say $b.name;        # Sam
+say $b.party;       # 4  (Int, not Str)
+say $b.restaurant;  # Pizza East
+=end code
+
+=end pod

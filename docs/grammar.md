@@ -1,4 +1,4 @@
-[← Index](../../index.md)
+[← Index](../index.md)
 
 Grammar DSL
 ===========

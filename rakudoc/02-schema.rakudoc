@@ -1,0 +1,66 @@
+=begin pod
+
+=head1 2. Your First Schema
+
+In Slangify, the schema is a Raku Grammar. Each named token is a field; the
+C<TOP> rule defines the canonical DSL line the LLM must produce.
+
+=head2 The booking grammar
+
+=begin code :lang<raku>
+grammar Slangify::Tutorial::Grammar {
+    token TOP {
+        <.ws>
+        name        <.ws> <name>       <.ws>
+        party       <.ws> <party>      <.ws>
+        time        <.ws> <time>       <.ws>
+        restaurant  <.ws> <restaurant> <.ws>
+        date        <.ws> <date>       <.ws>?
+        $
+    }
+
+    token name       { '"' <( <-["]>+ )> '"' }
+    token party      { \d+                   }
+    token time       { \d+ ':' \d\d          }
+    token restaurant { '"' <( <-["]>+ )> '"' }
+    token date       { \S+                   }
+    token ws         { \h*                   }
+}
+=end code
+
+=head2 Field types
+
+=defn name / restaurant
+Quoted string — any characters except C<">. The C<< <( )> >> markers strip
+the surrounding quotes from the capture.
+
+=defn party
+One or more digits — coerced to C<Int> by the C<Booking> class.
+
+=defn time
+24-hour C<HH:MM> — e.g. C<19:30> for 7:30 pm.
+
+=defn date
+Any non-whitespace token: C<today>, C<tomorrow>, a weekday, or C<2026-06-01>.
+
+=head2 Required vs optional
+
+Every field in C<TOP> is required by default. To make a field optional, add
+C<**{0..1}> or C<?>  after its subrule call, and handle the missing case in
+C<Booking>.
+
+=head2 Testing the grammar standalone
+
+The grammar parses the canonical DSL line without any LLM — useful for
+development and in the L<Slangify Playground|https://slangify.org>:
+
+=begin code :lang<raku>
+my $m = Slangify::Tutorial::Grammar.parse(
+    'name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow'
+);
+say $m<name>;        # Jane
+say $m<party>;       # 4
+say $m<restaurant>;  # Bistro Verde
+=end code
+
+=end pod

@@ -1,0 +1,44 @@
+=begin pod
+
+=head1 1. Install and Setup
+
+=head2 Prerequisites
+
+=item Raku (2026.04 or later)
+=item C<zef> package manager
+=item An OpenAI or Anthropic API key
+
+=head2 Install the module
+
+=begin code :lang<shell>
+zef install Slangify::Tutorial
+=end code
+
+Or, to work from source:
+
+=begin code :lang<shell>
+git clone https://github.com/librasteve/Slangify-Tutorial
+cd Slangify-Tutorial
+zef install --/test .
+=end code
+
+=head2 Set your API key
+
+C<LLM::Functions> picks up your key from the environment:
+
+=begin code :lang<shell>
+export OPENAI_API_KEY=sk-...
+=end code
+
+=head2 Verify the install
+
+=begin code :lang<raku>
+use Slangify::Tutorial;
+
+say parse-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
+=end code
+
+You should see a JSON string with C<name>, C<party>, C<time>, C<restaurant>,
+and C<date> fields.
+
+=end pod

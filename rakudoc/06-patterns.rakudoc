@@ -1,0 +1,76 @@
+=begin pod
+
+=head1 6. Prompt Engineering Patterns
+
+Four practical patterns for combining Slangify grammars with LLMs.
+
+=head2 a) Extraction
+
+Convert free text into structured data. This is the core use case.
+
+Prompt instruction:
+
+=begin code
+Convert the following booking request into DSL format.
+Output only the DSL line.
+=end code
+
+Result: the LLM strips noise and maps fields — you parse the DSL.
+
+=head2 b) Generation
+
+Ask the LLM to I<create> content that already conforms to your schema.
+
+Example — generate a support-ticket summary in DSL form:
+
+=begin code
+Write a support ticket for a user who cannot log in.
+Use this format: customer_name "..." issue_type "..." priority low|medium|high summary "..."
+=end code
+
+The grammar then validates that the generated text is well-formed before it
+touches your database.
+
+=head2 c) Transformation
+
+Convert one structure into another.
+
+Example: turn a raw email into a CRM record.
+
+=begin code
+Given this customer email, produce a CRM record in DSL format:
+  contact_name "..." company "..." intent "..." follow_up_date YYYY-MM-DD
+=end code
+
+The LLM handles the semantic mapping; the grammar enforces the output contract.
+
+=head2 d) Classification
+
+Use an C<enum> token to constrain the LLM to a fixed vocabulary.
+
+Grammar:
+
+=begin code :lang<raku>
+token priority { 'low' | 'medium' | 'high' }
+=end code
+
+Prompt instruction:
+
+=begin code
+Classify the urgency of this support request as low, medium, or high.
+Output only: priority <value>
+=end code
+
+If the LLM outputs C<priority urgent>, the grammar rejects it. Retry logic or
+a stricter prompt resolves the mismatch.
+
+=head2 Choosing a pattern
+
+=table
+Pattern        | When to use
+Extraction     | Unstructured input → known schema
+Generation     | LLM creates content, schema validates it
+Transformation | Structured input → different structured output
+Classification | Categorical output from a closed vocabulary
+
+=end pod

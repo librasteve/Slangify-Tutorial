@@ -1,0 +1,69 @@
+=begin pod
+
+=head1 8. Common Pitfalls
+
+=head2 Overly broad schemas
+
+B<Bad> — a single catch-all field:
+
+=begin code :lang<raku>
+token details { .* }
+=end code
+
+B<Better> — specific named fields:
+
+=begin code :lang<raku>
+token customer_email { <-[\s]>+ '@' <-[\s]>+ }
+token customer_issue { '"' <( <-["]>+ )> '"' }
+=end code
+
+Broad tokens give the grammar nothing to check and make downstream code
+harder to write.
+
+=head2 Too much logic in the prompt
+
+Put structure in the grammar — not in the prompt.
+
+B<Fragile:>
+
+=begin code
+Extract the name, party size as an integer between 1 and 20, the time in
+24-hour format, the restaurant name without articles, and the date as a
+single lowercase word or ISO date…
+=end code
+
+B<Better:> write a tight grammar and tell the LLM only the DSL format and
+one worked example. The grammar enforces everything else.
+
+=head2 Ambiguous types
+
+Prefer precise token patterns over bare C<\S+>:
+
+=table
+Vague     | Precise
+\S+       | \d\d\d\d '-' \d\d '-' \d\d   (date)
+\S+       | \d+ ':' \d\d                 (time)
+\S+       | 'low' | 'medium' | 'high'    (enum)
+.+        | '"' <( <-["]>+ )> '"'        (quoted string)
+
+The more specific the token, the earlier bad LLM output is caught.
+
+=head2 Not testing the grammar standalone
+
+Always verify the grammar parses your canonical DSL B<before> adding the LLM
+step. Use the L<Slangify Playground|https://slangify.org> or a quick
+C<prove6 t/01-basic.rakutest>. If the grammar itself is broken, no amount of
+prompt tuning will help.
+
+=head2 Ignoring parse failures
+
+=begin code :lang<raku>
+my $m = Grammar.parse($canonical, :actions(Actions.new));
+die "Parse failed on: $canonical" unless $m;   # always check!
+=end code
+
+A silent C<Nil> match means the LLM deviated from the DSL. Log the canonical
+string so you can see exactly what the LLM produced and tighten the prompt or
+grammar accordingly.
+
+=end pod
