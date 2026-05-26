@@ -16,6 +16,38 @@ short loop: run → observe → tighten → repeat.
 6. Repeat until the full sample set passes
 =end code
 
+=head2 Tool: Slangify Playground
+
+L<Playground Link|https://play.slangify.org/91912aa811d5a940bdcb161d131a4c1004f4d053>
+
+L<https://slangify.org/playground> lets you paste a grammar and type DSL
+lines directly to test token rules without any LLM round-trip. Fast feedback
+for grammar iteration — no local install required.
+
+You can C<Share> a url to the playground to distribute the DSL model to colleagues - the C<DSL> selector limits the view to C<input> and C<made> panels only for less technical team members.
+
+Workflow:
+
+=item Paste C<Slangify::Tutorial::Grammar> into the grammar panel
+=item Paste C<Slangify::Tutorial::Action> into the action panel
+=item Type a canonical DSL line into the input panel
+=item The playground shows the parse tree and named captures immediately
+=item Tweak a token, re-paste, re-run — tight loop with no Raku install needed
+=item Share a permalink to your grammar with collaborators
+
+=head2 Tool: Grammar::Editor
+
+The L<Grammar::Editor|https://raku.land/zef:FCO/Grammar::Editor> module is a convenient tool for those that prefer a Terminal User Interface (TUI) environment.
+
+Workflow:
+
+=item Paste both C<Slangify::Tutorial::Grammar> and C<Slangify::Tutorial::Actions>
+=item Run against a canonical DSL line to verify the C<Booking> object is populated correctly
+
+=head2 Other Tools
+
+For general Raku programming, a selection of IDE and editor tooling can be found at L<https://raku.org/tools>.
+
 =head2 Logging the canonical DSL
 
 Always log the intermediate DSL string so you can see exactly what the LLM
@@ -61,10 +93,5 @@ in C<TOP> with C<?>  and handle the missing case in C<Booking>.
 Your C<token time { <[0..2]>\d ':' <[0..5]>\d }> rejects C<9:00> (single
 digit hour). Fix: C<token time { \d\d? ':' <[0..5]>\d }>.
 
-=head2 Using the Slangify Playground for iteration
-
-Paste your grammar into L<https://slangify.org> and type DSL lines directly
-to test token rules without any LLM round-trip. Fast feedback for grammar
-iteration.
 
 =end pod

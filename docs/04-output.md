@@ -51,3 +51,5 @@ say $b.party;       # 4  (Int, not Str)
 say $b.restaurant;  # Pizza East
 ```
 
+See [Booking Class](./actions.md) declaration.
+

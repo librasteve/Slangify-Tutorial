@@ -37,7 +37,7 @@ Example: C<date tomorrow>
 
 =head2 Using in the Slangify Playground
 
-Paste the grammar into L<https://slangify.org> and use the canonical DSL as input.
+Paste the grammar into L<https://slangify.org/playground> and use the canonical DSL as input.
 The grammar parses standalone — no LLM step required.
 
 =end pod

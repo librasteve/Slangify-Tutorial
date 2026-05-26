@@ -54,4 +54,6 @@ say $b.party;       # 4  (Int, not Str)
 say $b.restaurant;  # Pizza East
 =end code
 
+See L<Booking Class|./actions.md> declaration.
+
 =end pod

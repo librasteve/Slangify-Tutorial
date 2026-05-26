@@ -30,5 +30,5 @@ Single word: `today`, `tomorrow`, a weekday name, or an ISO date (`2026-06-01`).
 
 ## Using in the Slangify Playground
 
-Paste the grammar into [https://slangify.org](https://slangify.org) and use the canonical DSL as input. The grammar parses standalone — no LLM step required.
+Paste the grammar into [https://slangify.org/playground](https://slangify.org/playground) and use the canonical DSL as input. The grammar parses standalone — no LLM step required.
 

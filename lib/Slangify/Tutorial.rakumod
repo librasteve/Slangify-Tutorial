@@ -72,13 +72,15 @@ The canonical DSL form (parseable standalone in Grammar Editor / Slangify Playgr
 
   name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow
 
+L<Playground Link|https://play.slangify.org/91912aa811d5a940bdcb161d131a4c1004f4d053>
+
 =head1 AUTHOR
 
-librasteve <librasteve@furnival.net>
+Stephen Roe <librasteve@furnival.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2026 librasteve
+Copyright 2026 Stephen Roe
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
