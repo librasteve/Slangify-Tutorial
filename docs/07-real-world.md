@@ -1,12 +1,10 @@
 [← Index](../index.md)
 
-7. A Real-World Example
-=======================
+# 07. A Real-World Example
 
 A support-ticket parser: convert a customer email into a structured ticket record.
 
-The grammar
------------
+## The grammar
 
 ```raku
 grammar Ticket::Grammar {
@@ -27,8 +25,7 @@ grammar Ticket::Grammar {
 }
 ```
 
-The Ticket class
-----------------
+## The Ticket class
 
 ```raku
 use Actionable;
@@ -47,8 +44,7 @@ class Ticket::Actions {
 }
 ```
 
-The LLM normalizer
-------------------
+## The LLM normalizer
 
 ```raku
 use LLM::Functions;
@@ -79,8 +75,7 @@ sub normalize-ticket(Str $email --> Str) {
 }
 ```
 
-End-to-end call
----------------
+## End-to-end call
 
 ```raku
 my $email = q:to/END/;

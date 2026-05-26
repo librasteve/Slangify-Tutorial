@@ -1,6 +1,6 @@
 =begin pod
 
-=head1 2. Your First Schema
+=head1 02. Your First Schema
 
 In Slangify, the schema is a Raku Grammar. Each named token is a field; the
 C<TOP> rule defines the canonical DSL line the LLM must produce.
@@ -51,8 +51,7 @@ C<Booking>.
 
 =head2 Testing the grammar standalone
 
-The grammar parses the canonical DSL line without any LLM — useful for
-development and in the L<Slangify Playground|https://slangify.org>:
+The grammar parses the canonical DSL line without any LLM, keeping the schema that defines your DSL distinct and concrete to maximize clarity, effectiveness and ease of test:
 
 =begin code :lang<raku>
 my $m = Slangify::Tutorial::Grammar.parse(

@@ -1,6 +1,6 @@
 =begin pod
 
-=head1 9. Next Steps
+=head1 09. Next Steps
 
 =head2 What you learned
 
@@ -17,7 +17,7 @@ Add a C<token address> subrule with its own sub-tokens, and a nested class
 inside C<Booking>. The C<Actionable> role composes naturally.
 
 =defn Tool calling
-Wire C<parse-booking> as a tool in an C<LLM::Functions> agent so the LLM
+Wire C<extract-booking> as a tool in an C<LLM::Functions> agent so the LLM
 can invoke it mid-conversation.
 
 =defn Streaming structured output

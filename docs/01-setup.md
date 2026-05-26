@@ -1,25 +1,34 @@
 [← Index](../index.md)
 
-1. Install and Setup
-====================
+# 01. Install and Setup
 
-Prerequisites
--------------
+## Prerequisites
 
-  * Raku (2026.04 or later)
+  * Raku
 
-  * `zef` package manager
+  * An AI key (such as OpenAI)
 
-  * An OpenAI or Anthropic API key
+## Install raku
 
-Install the module
-------------------
+Simply use rakubrew...
+
+...for macOS...
 
 ```shell
-zef install Slangify::Tutorial
+curl https://rakubrew.org/install-on-macos.sh | sh
 ```
 
-Or, to work from source:
+...or linux...
+
+```shell
+curl https://rakubrew.org/install-on-perl.sh | sh
+```
+
+Or, see [https://raku.org/install](https://raku.org/install) for more options.
+
+Raku comes with the `zef` package manager.
+
+## Clone the module
 
 ```shell
 git clone https://github.com/librasteve/Slangify-Tutorial
@@ -27,8 +36,9 @@ cd Slangify-Tutorial
 zef install --/test .
 ```
 
-Set your API key
-----------------
+This will bring in all the dependencies - such as the `LLM::Functions` module.
+
+## Set your API key
 
 `LLM::Functions` picks up your key from the environment:
 
@@ -36,13 +46,12 @@ Set your API key
 export OPENAI_API_KEY=sk-...
 ```
 
-Verify the install
-------------------
+Or, see [https://raku.land/zef:antononcube/LLM::Functions](https://raku.land/zef:antononcube/LLM::Functions) for other LLM services.
+
+## Verify the install
 
 ```raku
-use Slangify::Tutorial;
-
-say parse-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
+extract-booking "Jane Murphy booked a table for 4 at 7:30pm tomorrow at Bistro Verde"
 ```
 
 You should see a JSON string with `name`, `party`, `time`, `restaurant`, and `date` fields.

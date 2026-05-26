@@ -1,13 +1,13 @@
 =begin pod
 
-=head1 4. The Generated Output
+=head1 04. The Generated Output
 
 =head2 Example call
 
 =begin code :lang<raku>
 use Slangify::Tutorial;
 
-say parse-booking("Book a table for Sam and three friends at Pizza East tomorrow at 8pm");
+say extract-booking("Book a table for Sam and three friends at Pizza East tomorrow at 8pm");
 =end code
 
 =head2 Output
@@ -36,7 +36,7 @@ basic checks before any business logic runs
 
 =head2 The Booking object
 
-Behind the scenes C<parse-booking> returns C<$match.made.raku>, where C<.made>
+Behind the scenes C<extract-booking> returns C<$match.made.raku>, where C<.made>
 is a C<Booking> instance populated by the C<Actionable> role:
 
 =begin code :lang<raku>

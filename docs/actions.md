@@ -1,12 +1,10 @@
 [← Index](../index.md)
 
-Actions & Booking Class
-=======================
+# Actions & Booking Class
 
 `Slangify::Tutorial::Actions` uses the `Actionable` role to auto-populate a `Booking` object from a successful grammar match.
 
-The Booking Class
------------------
+## The Booking Class
 
 ```raku
 use Actionable;
@@ -24,8 +22,7 @@ class Booking does Actionable {
 
 The `Actionable` role wires named grammar captures to attributes automatically. `Int` attributes are coerced from the capture string via `+$raw`.
 
-Actions Class
--------------
+## Actions Class
 
 ```raku
 class Slangify::Tutorial::Actions {
@@ -37,8 +34,7 @@ class Slangify::Tutorial::Actions {
 
 `Booking.action($/)` is the `Actionable` entry point — it reads all named captures from `$/` and populates the matching attributes.
 
-JSON Output
------------
+## JSON Output
 
 `$booking.raku` delegates to `action-to-json`, returning a JSON string with all public attributes.
 

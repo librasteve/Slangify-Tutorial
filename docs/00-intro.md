@@ -1,7 +1,6 @@
 [← Index](../index.md)
 
-Slangify::Tutorial
-==================
+# Slangify::Tutorial
 
 **Using Slangify with LLMs: From Prompt to Structured Output**
 
@@ -25,8 +24,7 @@ Desired output:
 
 Slangify lets you define that structure with a DSL, then use an LLM to populate it reliably. This tutorial walks through everything from a first schema to a real-world pipeline.
 
-What you will learn
--------------------
+## What you will learn
 
   * Understand what Slangify does
 
@@ -40,8 +38,7 @@ What you will learn
 
   * See how this fits into a real workflow
 
-Chapters
---------
+## Chapters
 
   * [1. Setup](01-setup.md)
 

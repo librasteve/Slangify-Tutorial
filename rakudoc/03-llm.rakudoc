@@ -1,6 +1,6 @@
 =begin pod
 
-=head1 3. Connecting to an LLM
+=head1 03. Connecting to an LLM
 
 The C<normalize-text> function is the bridge between free-form English and the
 canonical DSL the grammar can parse.
@@ -49,7 +49,7 @@ variation; the grammar enforces structure. Neither has to do the other's job.
 =head2 Putting it together
 
 =begin code :lang<raku>
-sub parse-booking(Str $text --> Str) is export {
+sub extract-booking(Str $text --> Str) is export {
     my $canonical = normalize-text($text);
     my $match = Slangify::Tutorial::Grammar.parse(
         $canonical,
@@ -60,7 +60,7 @@ sub parse-booking(Str $text --> Str) is export {
 }
 =end code
 
-The C<parse-booking> sub chains normalization → grammar → actions in one call
+The C<extract-booking> sub chains normalization → grammar → actions in one call
 and returns a JSON string.
 
 =end pod

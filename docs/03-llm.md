@@ -1,12 +1,10 @@
 [← Index](../index.md)
 
-3. Connecting to an LLM
-=======================
+# 03. Connecting to an LLM
 
 The `normalize-text` function is the bridge between free-form English and the canonical DSL the grammar can parse.
 
-How it works
-------------
+## How it works
 
 ```raku
 use LLM::Functions;
@@ -38,8 +36,7 @@ sub normalize-text(Str $text --> Str) {
 }
 ```
 
-The three-part pipeline
------------------------
+## The three-part pipeline
 
   * **Prompt goes in** — free-form English from the user
 
@@ -49,11 +46,10 @@ The three-part pipeline
 
 This separation is the key insight: the LLM handles natural language variation; the grammar enforces structure. Neither has to do the other's job.
 
-Putting it together
--------------------
+## Putting it together
 
 ```raku
-sub parse-booking(Str $text --> Str) is export {
+sub extract-booking(Str $text --> Str) is export {
     my $canonical = normalize-text($text);
     my $match = Slangify::Tutorial::Grammar.parse(
         $canonical,
@@ -64,5 +60,5 @@ sub parse-booking(Str $text --> Str) is export {
 }
 ```
 
-The `parse-booking` sub chains normalization → grammar → actions in one call and returns a JSON string.
+The `extract-booking` sub chains normalization → grammar → actions in one call and returns a JSON string.
 

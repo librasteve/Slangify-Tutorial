@@ -11,7 +11,7 @@ SYNOPSIS
 ```raku
 use Party::Tute;
 
-say parse-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
+say extract-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
 ```
 
 Output:

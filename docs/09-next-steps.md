@@ -1,10 +1,8 @@
 [← Index](../index.md)
 
-9. Next Steps
-=============
+# 09. Next Steps
 
-What you learned
-----------------
+## What you learned
 
   * Define a schema as a Raku Grammar with named tokens
 
@@ -16,8 +14,7 @@ What you learned
 
   * Build schema-driven pipelines instead of fragile regex or prompt hacks
 
-Things to explore next
-----------------------
+## Things to explore next
 
 **Nested schemas**
 
@@ -25,7 +22,7 @@ Add a C<token address> subrule with its own sub-tokens, and a nested class insid
 
 **Tool calling**
 
-Wire C<parse-booking> as a tool in an C<LLM::Functions> agent so the LLM can invoke it mid-conversation.
+Wire C<extract-booking> as a tool in an C<LLM::Functions> agent so the LLM can invoke it mid-conversation.
 
 **Streaming structured output**
 
@@ -43,8 +40,7 @@ Use the structured C<Booking> / C<Ticket> objects as typed messages passed betwe
 
 Paste any Grammar + Actions pair into L<https://slangify.org> to test and share your DSL interactively — no local install needed.
 
-Further reading
----------------
+## Further reading
 
   * [Slangify::Tutorial source](https://github.com/librasteve/Slangify-Tutorial)
 

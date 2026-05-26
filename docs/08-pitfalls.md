@@ -1,10 +1,8 @@
 [← Index](../index.md)
 
-8. Common Pitfalls
-==================
+# 08. Common Pitfalls
 
-Overly broad schemas
---------------------
+## Overly broad schemas
 
 **Bad** — a single catch-all field:
 
@@ -21,8 +19,7 @@ token customer_issue { '"' <( <-["]>+ )> '"' }
 
 Broad tokens give the grammar nothing to check and make downstream code harder to write.
 
-Too much logic in the prompt
-----------------------------
+## Too much logic in the prompt
 
 Put structure in the grammar — not in the prompt.
 
@@ -34,8 +31,7 @@ Put structure in the grammar — not in the prompt.
 
 **Better:** write a tight grammar and tell the LLM only the DSL format and one worked example. The grammar enforces everything else.
 
-Ambiguous types
----------------
+## Ambiguous types
 
 Prefer precise token patterns over bare `\S+`:
 
@@ -47,13 +43,11 @@ Prefer precise token patterns over bare `\S+`:
 
 The more specific the token, the earlier bad LLM output is caught.
 
-Not testing the grammar standalone
-----------------------------------
+## Not testing the grammar standalone
 
 Always verify the grammar parses your canonical DSL **before** adding the LLM step. Use the [Slangify Playground](https://slangify.org) or a quick `prove6 t/01-basic.rakutest`. If the grammar itself is broken, no amount of prompt tuning will help.
 
-Ignoring parse failures
------------------------
+## Ignoring parse failures
 
 ```raku
 my $m = Grammar.parse($canonical, :actions(Actions.new));

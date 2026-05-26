@@ -1,19 +1,16 @@
 [← Index](../index.md)
 
-4. The Generated Output
-=======================
+# 04. The Generated Output
 
-Example call
-------------
+## Example call
 
 ```raku
 use Slangify::Tutorial;
 
-say parse-booking("Book a table for Sam and three friends at Pizza East tomorrow at 8pm");
+say extract-booking("Book a table for Sam and three friends at Pizza East tomorrow at 8pm");
 ```
 
-Output
-------
+## Output
 
 ```json
 {
@@ -27,8 +24,7 @@ Output
 
 The LLM resolved `"Sam and three friends"` to `party: 4` and normalized `8pm` to `20:00` — both things a regex alone cannot do reliably.
 
-Why structured output matters
------------------------------
+## Why structured output matters
 
   * **Easier to consume downstream** — hand the hash to a database, API, or next pipeline step without parsing
 
@@ -36,10 +32,9 @@ Why structured output matters
 
   * **Easy to validate** — typed fields (`Int`, `Str`) give you free basic checks before any business logic runs
 
-The Booking object
-------------------
+## The Booking object
 
-Behind the scenes `parse-booking` returns `$match.made.raku`, where `.made` is a `Booking` instance populated by the `Actionable` role:
+Behind the scenes `extract-booking` returns `$match.made.raku`, where `.made` is a `Booking` instance populated by the `Actionable` role:
 
 ```raku
 my $m = Slangify::Tutorial::Grammar.parse($canonical,

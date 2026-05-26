@@ -1,26 +1,39 @@
 =begin pod
 
-=head1 1. Install and Setup
+=head1 01. Install and Setup
 
 =head2 Prerequisites
 
-=item Raku (2026.04 or later)
-=item C<zef> package manager
-=item An OpenAI or Anthropic API key
+=item Raku
+=item An AI key (such as OpenAI)
 
-=head2 Install the module
+=head2 Install raku
 
+Simply use rakubrew...
+
+...for macOS...
 =begin code :lang<shell>
-zef install Slangify::Tutorial
+curl https://rakubrew.org/install-on-macos.sh | sh
 =end code
 
-Or, to work from source:
+...or linux...
+=begin code :lang<shell>
+curl https://rakubrew.org/install-on-perl.sh | sh
+=end code
+
+Or, see L<https://raku.org/install> for more options.
+
+Raku comes with the C<zef> package manager.
+
+=head2 Clone the module
 
 =begin code :lang<shell>
 git clone https://github.com/librasteve/Slangify-Tutorial
 cd Slangify-Tutorial
 zef install --/test .
 =end code
+
+This will bring in all the dependencies - such as the C<LLM::Functions> module.
 
 =head2 Set your API key
 
@@ -30,12 +43,12 @@ C<LLM::Functions> picks up your key from the environment:
 export OPENAI_API_KEY=sk-...
 =end code
 
+Or, see L<https://raku.land/zef:antononcube/LLM::Functions> for other LLM services.
+
 =head2 Verify the install
 
 =begin code :lang<raku>
-use Slangify::Tutorial;
-
-say parse-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
+extract-booking "Jane Murphy booked a table for 4 at 7:30pm tomorrow at Bistro Verde"
 =end code
 
 You should see a JSON string with C<name>, C<party>, C<time>, C<restaurant>,

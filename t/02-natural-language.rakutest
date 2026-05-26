@@ -91,7 +91,7 @@ my @cases = (
 
 for @cases -> %c {
     subtest %c<label>, {
-        my $json = parse-booking(%c<text>);
+        my $json = extract-booking(%c<text>);
         ok $json, 'got JSON output';
 
         my %data = from-json($json);

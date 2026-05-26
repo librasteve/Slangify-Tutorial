@@ -59,12 +59,12 @@ object from the grammar match.
 
 ### Requirement: JSON output
 
-`parse-booking` (exported from `Party::Tute`) SHALL return a pretty-printed JSON
+`extract-booking` (exported from `Party::Tute`) SHALL return a pretty-printed JSON
 string with snake_case keys.
 
 #### Scenario: JSON output shape
 
-- **WHEN** `parse-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde")` is called
+- **WHEN** `extract-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde")` is called
 - **THEN** the result SHALL be valid JSON
 - **AND** SHALL contain keys: `name`, `party_size`, `time`, `restaurant`, `date`
 - **AND** `party_size` SHALL be the integer `4`

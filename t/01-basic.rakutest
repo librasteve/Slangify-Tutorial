@@ -115,7 +115,7 @@ subtest 'JSON output via .raku has correct keys and types', {
 if %*ENV<OPENAI_API_KEY> {
     use Slangify::Tutorial;
     subtest 'full pipeline: freeform text → JSON', {
-        my $json = parse-booking(
+        my $json = extract-booking(
             'Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde'
         );
         ok $json, 'got JSON string';

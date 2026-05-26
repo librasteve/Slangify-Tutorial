@@ -1,14 +1,12 @@
 [← Index](../index.md)
 
-Grammar DSL
-===========
+# Grammar DSL
 
 `Slangify::Tutorial::Grammar` parses a canonical booking DSL line of the form:
 
     name "Jane" party 4 time 19:30 restaurant "Bistro Verde" date tomorrow
 
-Token Reference
----------------
+## Token Reference
 
 **name**
 
@@ -30,8 +28,7 @@ Restaurant name in double quotes. Example: C<restaurant "Bistro Verde">
 
 Single word: C<today>, C<tomorrow>, a weekday name, or an ISO date (C<2026-06-01>). Example: C<date tomorrow>
 
-Using in the Slangify Playground
---------------------------------
+## Using in the Slangify Playground
 
 Paste the grammar into [https://slangify.org](https://slangify.org) and use the canonical DSL as input. The grammar parses standalone — no LLM step required.
 

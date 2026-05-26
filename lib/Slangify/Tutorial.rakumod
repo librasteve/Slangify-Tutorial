@@ -29,7 +29,7 @@ sub normalize-text(Str $text --> Str) {
     ~normalizer(input => $text)
 }
 
-sub parse-booking(Str $text --> Str) is export {
+sub extract-booking(Str $text --> Str) is export {
     my $canonical = normalize-text($text);
     my $match = Slangify::Tutorial::Grammar.parse(
         $canonical,
@@ -52,7 +52,7 @@ Slangify::Tutorial - Extract structured data from natural language restaurant bo
 
 use Slangify::Tutorial;
 
-say parse-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
+say extract-booking("Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde");
 # {
 #   "name": "Jane",
 #   "party": 4,

@@ -1,12 +1,10 @@
 [← Index](../index.md)
 
-2. Your First Schema
-====================
+# 02. Your First Schema
 
 In Slangify, the schema is a Raku Grammar. Each named token is a field; the `TOP` rule defines the canonical DSL line the LLM must produce.
 
-The booking grammar
--------------------
+## The booking grammar
 
 ```raku
 grammar Slangify::Tutorial::Grammar {
@@ -29,8 +27,7 @@ grammar Slangify::Tutorial::Grammar {
 }
 ```
 
-Field types
------------
+## Field types
 
 **name / restaurant**
 
@@ -48,15 +45,13 @@ One or more digits — coerced to C<Int> by the C<Booking> class.
 
 Any non-whitespace token: C<today>, C<tomorrow>, a weekday, or C<2026-06-01>.
 
-Required vs optional
---------------------
+## Required vs optional
 
 Every field in `TOP` is required by default. To make a field optional, add `**{0..1}` or `?` after its subrule call, and handle the missing case in `Booking`.
 
-Testing the grammar standalone
-------------------------------
+## Testing the grammar standalone
 
-The grammar parses the canonical DSL line without any LLM — useful for development and in the [Slangify Playground](https://slangify.org):
+The grammar parses the canonical DSL line without any LLM, keeping the schema that defines your DSL distinct and concrete to maximize clarity, effectiveness and ease of test:
 
 ```raku
 my $m = Slangify::Tutorial::Grammar.parse(

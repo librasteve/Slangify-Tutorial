@@ -1,12 +1,10 @@
 [← Index](../index.md)
 
-6. Prompt Engineering Patterns
-==============================
+# 06. Prompt Engineering Patterns
 
 Four practical patterns for combining Slangify grammars with LLMs.
 
-a) Extraction
--------------
+## a) Extraction
 
 Convert free text into structured data. This is the core use case.
 
@@ -17,8 +15,7 @@ Prompt instruction:
 
 Result: the LLM strips noise and maps fields — you parse the DSL.
 
-b) Generation
--------------
+## b) Generation
 
 Ask the LLM to *create* content that already conforms to your schema.
 
@@ -29,8 +26,7 @@ Example — generate a support-ticket summary in DSL form:
 
 The grammar then validates that the generated text is well-formed before it touches your database.
 
-c) Transformation
------------------
+## c) Transformation
 
 Convert one structure into another.
 
@@ -41,8 +37,7 @@ Example: turn a raw email into a CRM record.
 
 The LLM handles the semantic mapping; the grammar enforces the output contract.
 
-d) Classification
------------------
+## d) Classification
 
 Use an `enum` token to constrain the LLM to a fixed vocabulary.
 
@@ -59,8 +54,7 @@ Prompt instruction:
 
 If the LLM outputs `priority urgent`, the grammar rejects it. Retry logic or a stricter prompt resolves the mismatch.
 
-Choosing a pattern
-------------------
+## Choosing a pattern
 
 <table class="pod-table">
 <tbody>

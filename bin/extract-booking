@@ -6,6 +6,6 @@ sub MAIN(
     Str $text,         #= Free-form booking text to parse
     Str :$output,      #= Optional output file; if omitted prints to stdout
 ) {
-    my $json = parse-booking($text);
+    my $json = extract-booking($text);
     $output ?? $output.IO.spurt($json) !! print $json;
 }

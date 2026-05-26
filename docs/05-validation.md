@@ -1,12 +1,10 @@
 [← Index](../index.md)
 
-5. Validation and Constraints
-=============================
+# 05. Validation and Constraints
 
 This is where the Slangify approach becomes more valuable than plain prompting. Constraints live in the grammar and the `Booking` class — not in the prompt.
 
-Tightening grammar tokens
--------------------------
+## Tightening grammar tokens
 
 Restrict `party` to one or two digits (no absurdly large parties):
 
@@ -22,8 +20,7 @@ token time { <[0..2]>\d ':' <[0..5]>\d }
 
 Any LLM output that violates these rules causes the grammar to fail — the error surfaces before the result reaches your application.
 
-Constraints in the Booking class
---------------------------------
+## Constraints in the Booking class
 
 Use Raku's type system and `TWEAK` for business-rule validation:
 
@@ -39,8 +36,7 @@ class Booking does Actionable {
 
 If the LLM produces `party: 0` or `party: 99`, object construction fails with a clear type error rather than silently accepting bad data.
 
-Seeing failure in action
-------------------------
+## Seeing failure in action
 
 ```raku
 # LLM normalized "a crowd" to: party many
@@ -52,8 +48,7 @@ say $m.so;   # False — grammar rejects non-numeric party
 
 Readers love seeing failure **and** correction. The grammar gives you both: a clear rejection plus a single place to tighten the rule.
 
-Preferred types
----------------
+## Preferred types
 
 **integers**
 

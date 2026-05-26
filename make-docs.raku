@@ -2,8 +2,30 @@
 
 use File::Find;
 
-sub MAIN (:$filename, :$output = 'index.md') {
+sub watch-recursive(IO::Path $path) {
+    # lifted from https://github.com/croservices/cro/blob/main/lib/Cro/Tools/Services.rakumod
+    supply {
+        my %watched;
 
+        sub add-dir(IO::Path $dir) {
+            return if %watched{$dir};
+            %watched{$dir} = True;
+            with $dir.watch -> $w {
+                whenever $w {
+                    emit $_;
+                    my $p = .path.IO;
+                    add-dir($p) if $p.d && !$p.basename.starts-with('.');
+                    CATCH { default {} }
+                }
+            }
+            add-dir($_) for $dir.dir.grep(*.d).grep(!*.basename.starts-with('.'));
+        }
+
+        add-dir($path);
+    }
+}
+
+sub build(:$filename, :$output) {
     my @files = $filename
         ?? $filename.Array
         !!
@@ -32,6 +54,10 @@ sub MAIN (:$filename, :$output = 'index.md') {
         print "Processing { $newFile }...";
         my $docs = qqx{raku --doc=Markdown $_};
 
+        # setext headings (text\n====) break when text starts with N. (parsed as list)
+        $docs ~~ s:global:m/ ^^ (\N+) \n '=' ** 2..* $$ /\# $0/;
+        $docs ~~ s:global:m/ ^^ (\N+) \n '-' ** 2..* $$ /\#\# $0/;
+
         if $docs.trim {
             my $destFile = $newFile.extension('md');
             my $depth = $*SPEC.splitdir($destFile.relative).elems - 1;
@@ -46,7 +72,6 @@ sub MAIN (:$filename, :$output = 'index.md') {
 
     # If processing a single file, do NOT write out the index.
     unless $filename {
-        # Write index file
         my $index = "Document Index\n";
         $index ~= '=' x $index.chars.chomp ~ "\n\n";
 
@@ -61,5 +86,18 @@ sub MAIN (:$filename, :$output = 'index.md') {
         my $index-page = $docsDir.parent.resolve.add($output);
         $index-page.resolve.spurt: $index;
     }
+}
 
+sub MAIN (:$filename, :$output = 'index.md', :$watch = False) {
+    build(:$filename, :$output);
+
+    if $watch {
+        say "Watching rakudoc/ — press Ctrl-C to stop.";
+        react {
+            whenever watch-recursive('rakudoc'.IO).grep(*.path.ends-with('.rakudoc')) {
+                say "Changed: { .path } — rebuilding...";
+                build(:$filename, :$output);
+            }
+        }
+    }
 }
