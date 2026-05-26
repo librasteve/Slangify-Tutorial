@@ -34,7 +34,9 @@ sub MAIN (:$filename, :$output = 'index.md') {
 
         if $docs.trim {
             my $destFile = $newFile.extension('md');
-            $destFile.spurt: $docs;
+            my $depth = $*SPEC.splitdir($destFile.relative).elems - 1;
+            my $back = ('../' x $depth) ~ 'index.md';
+            $destFile.spurt: "[← Index]($back)\n\n" ~ $docs;
             @destFiles.push($destFile);
             say "output written to { $destFile.relative }";
         } else {
