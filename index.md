@@ -1,6 +1,7 @@
 Document Index
 ===============
 
+- [00-intro](docs/00-intro.md)
 - [01-setup](docs/01-setup.md)
 - [02-schema](docs/02-schema.md)
 - [03-llm](docs/03-llm.md)
@@ -12,4 +13,3 @@ Document Index
 - [09-next-steps](docs/09-next-steps.md)
 - [actions](docs/actions.md)
 - [grammar](docs/grammar.md)
-- [intro](docs/intro.md)
