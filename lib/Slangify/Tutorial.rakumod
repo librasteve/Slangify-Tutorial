@@ -74,6 +74,8 @@ The canonical DSL form (parseable standalone in Grammar Editor / Slangify Playgr
 
 L<Playground Link|https://play.slangify.org/91912aa811d5a940bdcb161d131a4c1004f4d053>
 
+L<Slangify Tutorial|https://librasteve.github.io/Slangify-Tutorial/>
+
 =head1 AUTHOR
 
 Stephen Roe <librasteve@furnival.net>
