@@ -1,6 +1,8 @@
 Slangify::Tutorial
 ==================
 
+yo
+
 A tutorial demonstrating how to combine a Raku Grammar + Actions DSL with an LLM pre-normalization step to extract structured data from free-form natural language text.
 
 Overview
