@@ -1,7 +1,7 @@
-[![Actions Status](https://github.com/librasteve/Slangify-Tutorlal/actions/workflows/test.yml/badge.svg)](https://github.com/librasteve/Slangify-Tutorlal/actions)
+[![Actions Status](https://github.com/librasteve/Slangify-Tutorial/actions/workflows/test.yml/badge.svg)](https://github.com/librasteve/Slangify-Tutorial/actions)
 
-NAME
-====
+Slangify::Tutorial
+==================
 
 Slangify::Tutorial - Extract structured data from natural language restaurant booking text
 
