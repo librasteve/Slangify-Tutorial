@@ -1,6 +1,6 @@
 [← Index](../index.md)
 
-# 09. Common Pitfalls
+# 10. Common Pitfalls
 
 ## Overly broad schemas
 

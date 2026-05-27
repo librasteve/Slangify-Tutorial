@@ -1,0 +1,84 @@
+=begin pod
+
+=head1 08. The LLM Prompts Used
+
+This chapter walks through the design process behind this tutorial — from a
+first experiment that B<didn't> need a DSL, through consulting an LLM for
+guidance, to the project spec that produced C<Slangify::Tutorial>.
+
+=head2 First experiment: bill extraction
+
+Starting point: a folder of utility bills.
+
+=begin code
+Ask Claude: "extract the data from these bills"
+Result: bills.csv  ✓
+=end code
+
+It worked — but there was no need for a DSL. A plain LLM prompt handled the
+extraction cleanly. The lesson: B<reach for a DSL only when structure and
+validation matter downstream>.
+
+This used approx. 10 bills, from the same utility provider. Possibly, the quality of data extraction would reduce with a more mixed bag of source material, more items or variations in LLM interpretation (eg different LLM models) which would suggest a return to the DSL strategy.
+
+=head2 Consulting an LLM: where does DSL + LLM shine?
+
+A conversation with ChatGPT surfaced the right use case:
+
+I want an LLM to extract structured information from messy text — but without
+hand-writing JSON schemas or fragile parsing logic.
+
+Example input:
+
+=begin code
+Jane booked a table for 4 at 7:30pm tomorrow at Bistro Verde
+=end code
+
+Desired output:
+
+=begin code :lang<json>
+{
+  "name": "Jane",
+  "party_size": 4,
+  "time": "7:30 PM",
+  "restaurant": "Bistro Verde",
+  "date": "tomorrow"
+}
+=end code
+
+The DSL approach wins here because the output must be I<typed> and I<validated>
+— not just text.
+
+=head2 Project spec
+
+Use C<mi6> to scaffold a new Raku project C<Slangify::Tutorial> in directory C<Slangify-Tutorial>.
+
+Set out the specification via C<openspec>.
+
+Make a DSL for this purpose using Raku Grammar and Actions (see examples at
+L<https://slangify.org>). Declare any needed classes in the Actions file.
+
+Make sure Grammar and Actions do the whole job so they can be used in the
+L<Grammar Editor / Slangify Playground|https://play.slangify.org>.
+
+Use C<JSON::Fast>, C<Actionable>, and C<LLM::Functions>. Prompt for other
+Raku modules if needed.
+
+Make a command C<Slangify-Tutorial> that takes the text as an argument and optionally
+a filename for the JSON output.
+
+=head2 Spec tweaks
+
+=item Add docs and tests.
+=item Use the standard Raku / IntelliJ C<.gitignore>.
+=item Any class instantiated inside an Actions method (e.g. via C<.action($/)>)
+SHALL be declared with a simple unqualified name (e.g. C<class Booking>)
+rather than a fully-qualified namespace name (e.g. C<class Slangify::Tutorial::Booking>).
+=item Make C<name> cover names with titles, first name, middle name, last name,
+and so on.
+
+=head2 Result
+
+L<View in Slangify Playground|https://play.slangify.org/3b7e2bb192a398406574c72684d2b81a199d307a>
+
+=end pod
