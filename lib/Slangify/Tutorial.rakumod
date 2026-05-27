@@ -42,7 +42,7 @@ sub extract-booking(Str $text --> Str) is export {
 
 =begin pod
 
-=head1 NAME
+=head1 Slangify::Tutorial
 
 Slangify::Tutorial - Extract structured data from natural language restaurant booking text
 
