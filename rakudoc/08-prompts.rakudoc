@@ -59,7 +59,7 @@ Make a DSL for this purpose using Raku Grammar and Actions (see examples at
 L<https://slangify.org>). Declare any needed classes in the Actions file.
 
 Make sure Grammar and Actions do the whole job so they can be used in the
-L<Grammar Editor / Slangify Playground|https://play.slangify.org>.
+L<Grammar Editor / Slangify Playground|https://play.slangify.org/3b7e2bb192a398406574c72684d2b81a199d307a>.
 
 Use C<JSON::Fast>, C<Actionable>, and C<LLM::Functions>. Prompt for other
 Raku modules if needed.
