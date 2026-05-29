@@ -43,11 +43,18 @@ share your DSL interactively — no local install needed.
 
 =head2 Further reading
 
-=head4 This tutorial
+=head4 This site
 
 =item L<Slangify::Tutorial source code|https://github.com/librasteve/Slangify-Tutorial>
-=item L<Slangify Website Examples|https://slangify.org/examples>
-=item L<Grammar Editor|https://play.slangify.org>
+=item L<Slangify Examples|https://slangify.org/examples>
+=item L<Slangify Playground|https://play.slangify.org/6dfde50adbfd8ca6d6396a88c8603e7b9d21c7e0>
+
+=head4 Key modules
+
+=item L<Grammar::Editor on raku.land|https://raku.land/zef:FCO/Grammar::Editor>
+=item L<LLM::Functions on raku.land|https://raku.land/zef:antononcube/LLM::Functions>
+=item L<Actionable on raku.land|https://raku.land/zef:librasteve/Actionable>
+=item L<JSON::Fast on raku.land|https://raku.land/cpan:TIMOTIMO/JSON::Fast>
 
 =head4 Raku docs
 
@@ -55,10 +62,5 @@ share your DSL interactively — no local install needed.
 =item L<Raku Regexes|https://docs.raku.org/language/regexes>
 =item L<Raku Pod6|https://docs.raku.org/language/pod>
 
-=head4 Key modules
-
-=item L<LLM::Functions on raku.land|https://raku.land/zef:antononcube/LLM::Functions>
-=item L<Actionable on raku.land|https://raku.land/zef:librasteve/Actionable>
-=item L<JSON::Fast on raku.land|https://raku.land/zef:timo/JSON::Fast>
 
 =end pod
