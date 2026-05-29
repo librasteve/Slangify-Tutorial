@@ -64,18 +64,14 @@ L<Grammar Editor / Slangify Playground|https://play.slangify.org>.
 Use C<JSON::Fast>, C<Actionable>, and C<LLM::Functions>. Prompt for other
 Raku modules if needed.
 
-Make a command C<Slangify-Tutorial> that takes the text as an argument and optionally
-a filename for the JSON output.
+Make a command C<Slangify-Tutorial> that takes the text as an argument and optionally a filename for the JSON output.
 
 =head2 Spec tweaks
 
 =item Add docs and tests.
 =item Use the standard Raku / IntelliJ C<.gitignore>.
-=item Any class instantiated inside an Actions method (e.g. via C<.action($/)>)
-SHALL be declared with a simple unqualified name (e.g. C<class Booking>)
-rather than a fully-qualified namespace name (e.g. C<class Slangify::Tutorial::Booking>).
-=item Make C<name> cover names with titles, first name, middle name, last name,
-and so on.
+=item Any class instantiated inside an Actions method (e.g. via C<.action($/)>) SHALL be declared with a simple unqualified name (e.g. C<class Booking>) rather than a fully-qualified namespace name (e.g. C<class Slangify::Tutorial::Booking>).
+=item Make C<name> cover names with titles, first name, middle name, last name, and so on.
 
 =head2 Result
 
