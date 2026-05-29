@@ -38,8 +38,7 @@ between agents in a multi-step pipeline.
 
 =head4 The Slangify Playground
 
-Paste any Grammar + Actions pair into L<https://slangify.org> to test and
-share your DSL interactively — no local install needed.
+Paste any Grammar + Actions pair into L<https://playground.slangify.org|https://play.slangify.org/6dfde50adbfd8ca6d6396a88c8603e7b9d21c7e0> to test and share your DSL interactively — no local install needed. Use the C<DSL> button to share with non technical DSL editors.
 
 =head2 Further reading
 
